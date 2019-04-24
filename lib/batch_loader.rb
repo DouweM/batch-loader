@@ -87,7 +87,7 @@ class BatchLoader
     items = __executor_proxy.list_items
     loader = __loader
     args = {default_value: @default_value, cache: @cache, key: @key}
-    @batch_block.call(items, loader, args)
+    @batch_block.call(items.dup, loader, args)
     items.each do |item|
       next if __executor_proxy.value_loaded?(item: item)
       loader.call(item, @default_value)
